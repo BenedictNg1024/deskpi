@@ -19,16 +19,28 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - name: Cross Compile Driver
+      - name: Cross Compile 64bit Driver
         run: |
           cd ${{ github.workspace }}/drivers/c/
+          make clean
           CC=/usr/bin/aarch64-linux-gnu-gcc make
       - name: Package Compiled Binary
         run: |
           cd ${{ github.workspace }}/drivers/c/
-          mkdir ${{ github.workspace }}/bin
-          cp ./pwmControlFan ${{ github.workspace }}/bin/
-          cp ./safecutoffpower ${{ github.workspace }}/bin/
+          mkdir -p ${{ github.workspace }}/bin/64
+          cp ./pwmControlFan ${{ github.workspace }}/bin/64/
+          cp ./safecutoffpower ${{ github.workspace }}/bin/64/
+      - name: Cross Compile 32bit Driver
+        run: |
+          cd ${{ github.workspace }}/drivers/c/
+          make clean
+          CC=/usr/bin/arm-linux-gnueabihf-gcc make
+      - name: Package Compiled Binary
+        run: |
+          cd ${{ github.workspace }}/drivers/c/
+          mkdir -p ${{ github.workspace }}/bin/32
+          cp ./pwmControlFan ${{ github.workspace }}/bin/32/
+          cp ./safecutoffpower ${{ github.workspace }}/bin/32/
       - name: Archive Compiled Artifacts
         uses: actions/upload-artifact@v4
         with:
