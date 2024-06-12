@@ -23,5 +23,17 @@ jobs:
         run: |
           cd ${{ github.workspace }}/drivers/c/
           CC=/usr/bin/aarch64-linux-gnu-gcc make
+      - name: Package Compiled Binary
+        run: |
+          cd ${{ github.workspace }}/drivers/c/
+          mkdir ${{ github.workspace }}/bin
+          cp ./pwmControlFan ${{ github.workspace }}/bin/
+          cp ./safecutoffpower ${{ github.workspace }}/bin/
+      - name: Archive Compiled Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: driver-bin
+          path: |
+            bin
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
