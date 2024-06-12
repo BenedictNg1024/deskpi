@@ -1,6 +1,8 @@
 DEFAULT: all
 .PHONY: install
 
+CC ?= /usr/bin/gcc
+
 all: pwmControlFan safecutoffpower
 
 install:
@@ -9,8 +11,8 @@ install:
 	chcon -u system_u -t bin_t /usr/bin/pwmControlFan /usr/bin/safecutoffpower
 
 pwmControlFan:  pwmControlFan.c
-	gcc -o pwmControlFan pwmControlFan.c
+	${CC} -o pwmControlFan pwmControlFan.c
 safecutoffpower:  safecutoffpower.c 
-	gcc -o safecutoffpower safecutoffpower.c
+	${CC} -o safecutoffpower safecutoffpower.c
 clean:
 	rm -rf safecutoffpower pwmControlFan 

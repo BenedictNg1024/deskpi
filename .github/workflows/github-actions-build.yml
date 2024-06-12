@@ -5,6 +5,8 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
       - name: Install Cross Compile Tools
         run: |
           sudo apt-get update
@@ -19,5 +21,9 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - name: Cross Compile Driver
+        run: |
+          cd ${{ github.workspace }}/drivers/c/
+          CC=/usr/bin/aarch64-linux-gnu-gcc make
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
