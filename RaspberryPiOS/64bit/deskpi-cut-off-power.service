@@ -1,0 +1,11 @@
+[Unit]
+Description=DeskPi-cut-off-power service
+Conflicts=reboot.target
+Before=halt.target shutdown.target poweroff.target
+DefaultDependencies=no
+[Service]
+Type=oneshot
+ExecStart= /usr/bin/safecutoffpower
+RemainAfterExit=yes
+[Install]
+WantedBy=halt.target shutdown.target poweroff.target

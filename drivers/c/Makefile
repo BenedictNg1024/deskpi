@@ -1,18 +1,16 @@
 DEFAULT: all
 .PHONY: install
 
-all: pwmControlFan64 safecutoffpower64
+all: pwmControlFan safecutoffpower
 
 install:
-	sudo chmod 755 pwmControlFan fanStop safecutoffpower
-	sudo cp pwmControlFan fanStop safecutoffpower /usr/bin/
-	sudo chcon -u system_u -t bin_t /usr/bin/pwmControlFan /usr/bin/fanStop /usr/bin/safecutoffpower
+	chmod 755 pwmControlFan safecutoffpower
+	cp pwmControlFan safecutoffpower /usr/bin/
+	chcon -u system_u -t bin_t /usr/bin/pwmControlFan /usr/bin/safecutoffpower
 
 pwmControlFan:  pwmControlFan.c
 	gcc -o pwmControlFan pwmControlFan.c
-fanStop: fanStop.c
-	gcc -o fanStop fanStop.c
 safecutoffpower:  safecutoffpower.c 
 	gcc -o safecutoffpower safecutoffpower.c
 clean:
-	rm -rf safecutoffpower pwmControlFan fanStop
+	rm -rf safecutoffpower pwmControlFan 
