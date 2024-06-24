@@ -1,0 +1,7 @@
+sed -i '/dtoverlay=dwc2*/d' /boot/firmware/config.txt
+sed -i '$a\dtoverlay=dwc2,dr_mode=host' /boot/firmware/config.txt
+systemctl enable deskpi.service
+systemctl start deskpi.service
+systemctl enable deskpi-cut-off-power.service
+systemctl start deskpi-cut-off-power.service
+

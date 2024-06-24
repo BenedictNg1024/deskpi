@@ -1,0 +1,7 @@
+systemctl stop deskpi.service
+systemctl disable deskpi.service
+systemctl stop deskpi-cut-off-power.service
+systemctl disable deskpi-cut-off-power.service
+
+rm -f /lib/systemd/system/deskpi.service
+rm -f /lib/systemd/system/deskpi-cut-off-power.service

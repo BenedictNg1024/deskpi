@@ -1,0 +1,5 @@
+Package: deskpi
+Version: 1.0
+Maintainer: Benedict Ng
+Architecture: arm64
+Description: deskpi package

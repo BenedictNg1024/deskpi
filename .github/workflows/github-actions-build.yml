@@ -30,6 +30,12 @@ jobs:
           mkdir -p ${{ github.workspace }}/bin/64
           cp ./pwmControlFan ${{ github.workspace }}/bin/64/
           cp ./safecutoffpower ${{ github.workspace }}/bin/64/
+      - name: Create Debian Package - arm64
+        run: |
+          cd ${{ github.workspace }}/drivers/c/
+          cp ./pwmControlFan ${{ github.workspace }}/RaspberryPiOS/64bit/deskpi/usr/bin/
+          cp ./safecutoffpower ${{ github.workspace }}/RaspberryPiOS/64bit/deskpi/usr/bin/
+          cp ${{ github.workspace }}/RaspberryPiOS/64bit/deskpi/deskpi.deb ${{ github.workspace }}/bin/64/
       - name: Cross Compile 32bit Driver
         run: |
           cd ${{ github.workspace }}/drivers/c/
