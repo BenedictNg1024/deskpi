@@ -35,6 +35,8 @@ jobs:
           cd ${{ github.workspace }}/drivers/c/
           cp ./pwmControlFan ${{ github.workspace }}/RaspberryPiOS/64bit/deskpi/usr/bin/
           cp ./safecutoffpower ${{ github.workspace }}/RaspberryPiOS/64bit/deskpi/usr/bin/
+          cd ${{ github.workspace }}/RaspberryPiOS/64bit/
+          dpkg-deb --build deskpi
           cp ${{ github.workspace }}/RaspberryPiOS/64bit/deskpi/deskpi.deb ${{ github.workspace }}/bin/64/
       - name: Cross Compile 32bit Driver
         run: |
