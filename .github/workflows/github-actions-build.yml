@@ -33,6 +33,7 @@ jobs:
       - name: Create Debian Package - arm64
         run: |
           cd ${{ github.workspace }}/drivers/c/
+          mkdir -p ${{ github.workspace }}/RaspberryPiOS/64bit/deskpi/usr/bin/
           cp ./pwmControlFan ${{ github.workspace }}/RaspberryPiOS/64bit/deskpi/usr/bin/
           cp ./safecutoffpower ${{ github.workspace }}/RaspberryPiOS/64bit/deskpi/usr/bin/
           cd ${{ github.workspace }}/RaspberryPiOS/64bit/
